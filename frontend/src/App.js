@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 import Mentors from './pages/Mentors';
-import MentorDetail from './pages/MentorDetail';
-import Networks from './pages/Networks';
-import Knowledge from './pages/Knowledge';
+import Chat from './pages/Chat';
+import Practice from './pages/Practice';
+import News from './pages/News';
+import Courses from './pages/Courses';
 
 function App() {
-  // Update navbar style on scroll for a dynamic feel.
-  useEffect(() => {
-    const handleScroll = () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/mentors" component={Mentors} exact />
-        <Route path="/mentors/:id" component={MentorDetail} />
-        <Route path="/networks" component={Networks} />
-        <Route path="/knowledge" component={Knowledge} />
-      </Switch>
-      <Footer />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow">
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/mentors" component={Mentors} />
+            <Route path="/chat" component={Chat} />
+            <Route path="/practice" component={Practice} />
+            <Route path="/news" component={News} />
+            <Route path="/courses" component={Courses} />
+          </Switch>
+        </div>
+        <Footer />
+      </div>
     </Router>
   );
 }
