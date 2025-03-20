@@ -1,0 +1,252 @@
+/* ===== Reset & Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+  }
+
+  /* ===== Navbar ===== */
+  .navbar {
+    background: rgba(0,0,0,0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    transition: background 0.3s;
+  }
+  .navbar.scrolled {
+    background: #000;
+  }
+
+  .navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  .navbar .logo {
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .navbar ul {
+    list-style: none;
+    display: flex;
+  }
+
+  .navbar ul li {
+    margin-left: 20px;
+  }
+
+  .navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+
+  .navbar ul li a:hover {
+    color: #ff5e14;
+  }
+
+  /* ===== Hero Section ===== */
+  .hero {
+    background: url('../images/hero-bg.jpg') center center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+  }
+
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .hero-content .btn {
+    padding: 12px 30px;
+    background: #ff5e14;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background 0.3s;
+  }
+
+  .hero-content .btn:hover {
+    background: #e04e0e;
+  }
+
+  /* ===== Keyframe Animations ===== */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== Sections ===== */
+  .section {
+    padding: 80px 0;
+  }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #ff5e14;
+    display: block;
+    margin: 10px auto 0;
+  }
+
+  /* ===== About Section ===== */
+  .about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 40px 0;
+  }
+
+  .about .about-content {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .about .about-img {
+    flex: 1;
+    padding: 20px;
+  }
+
+  .about .about-img img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* ===== Services Section ===== */
+  .services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 15px;
+    width: calc(33.333% - 30px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+  }
+
+  .service-card h3 {
+    margin-bottom: 15px;
+    color: #ff5e14;
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* ===== Cards for Mentors, Networks, Knowledge ===== */
+  .mentor-list, .network-list, .knowledge-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .mentor-card, .network-card, .knowledge-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 15px;
+    padding: 20px;
+    width: calc(33.333% - 30px);
+    transition: transform 0.3s;
+  }
+
+  .mentor-card:hover, .network-card:hover, .knowledge-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .mentor-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+  }
+
+  /* ===== Responsive Styles ===== */
+  @media(max-width: 768px) {
+    .service-card, .mentor-card, .network-card, .knowledge-card {
+      width: calc(50% - 30px);
+    }
+  }
+
+  @media(max-width: 480px) {
+    .service-card, .mentor-card, .network-card, .knowledge-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+    .about {
+      flex-direction: column;
+    }
+  }
