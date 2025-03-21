@@ -3,19 +3,18 @@ const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email:    { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ['mentor', 'student'], required: true },
+  role:     { type: String, enum: ['mentor', 'student'], required: true },
   profile: {
     bio: String,
-    expertise: [String],   // For mentors
-    interests: [String],   // For students
+    expertise: [String],
+    interests: [String],
     imageUrl: { type: String, default: '/images/default-user.jpg' }
   },
   connections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
-// Hash password before saving
 UserSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   try {

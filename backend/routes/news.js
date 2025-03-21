@@ -1,8 +1,7 @@
-// backend/routes/news.js
 const express = require('express');
 const router = express.Router();
-const { getNews } = require('../controllers/newsController');
+const { getTechNews } = require('../controllers/newsController');
 
-router.get('/', getNews);
+router.get('/', getTechNews);
 
 module.exports = router;

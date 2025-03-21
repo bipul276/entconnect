@@ -1,11 +1,19 @@
-// backend/controllers/newsController.js
-const News = require('../models/News');
 
-exports.getNews = async (req, res) => {
+const axios = require('axios');
+
+exports.getTechNews = async (req, res) => {
   try {
-    const news = await News.find().sort({ publishedAt: -1 });
-    res.json(news);
+    const response = await axios.get('https://newsapi.org/v2/top-headlines', {
+      params: {
+        category: 'technology',
+        apiKey: process.env.NEWS_API_KEY,
+        language: 'en',
+        country: 'us'
+      }
+    });
+    res.json(response.data.articles);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error(err);
+    res.status(500).json({ message: 'Server error fetching tech news' });
   }
 };

@@ -1,12 +1,10 @@
-// src/pages/Practice.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Sparkle from '../components/Sparkle'; // Adjust path if needed
+import Sparkle from '../Sparkle';
 
-// Helper: Simple function to shuffle an array.
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
 
-const Practice = () => {
+const PracticeTab = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -15,17 +13,15 @@ const Practice = () => {
   const [showScore, setShowScore] = useState(false);
   const [showSparkle, setShowSparkle] = useState(false);
 
-  // Fetch 10 multiple-choice questions from the Open Trivia Database.
   useEffect(() => {
     axios
       .get('https://opentdb.com/api.php', {
         params: {
           amount: 10,
-          type: 'multiple',
-        },
+          type: 'multiple'
+        }
       })
       .then((res) => {
-        // Process each question: combine correct and incorrect answers, then shuffle.
         const processedQuestions = res.data.results.map((q) => {
           const allAnswers = [...q.incorrect_answers, q.correct_answer];
           return { ...q, answers: shuffleArray(allAnswers) };
@@ -35,9 +31,8 @@ const Practice = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  // When an answer is clicked, evaluate correctness.
   const handleAnswerClick = (answer) => {
-    if (selectedAnswer) return; // Prevent changing answer once selected.
+    if (selectedAnswer) return;
     setSelectedAnswer(answer);
     const correct = questions[currentQuestionIndex].correct_answer;
     if (answer === correct) {
@@ -49,7 +44,6 @@ const Practice = () => {
     }
   };
 
-  // Move to the next question or finish the quiz.
   const handleNextQuestion = () => {
     const nextIndex = currentQuestionIndex + 1;
     if (nextIndex >= questions.length) {
@@ -63,7 +57,7 @@ const Practice = () => {
 
   if (questions.length === 0) {
     return (
-      <div className="container mx-auto p-4 text-center">
+      <div className="p-4 text-center">
         <p className="text-xl text-gray-600">Loading questions...</p>
       </div>
     );
@@ -71,7 +65,7 @@ const Practice = () => {
 
   if (showScore) {
     return (
-      <div className="container mx-auto p-4 text-center">
+      <div className="p-4 text-center">
         <h2 className="text-3xl font-bold mb-4">Quiz Complete!</h2>
         <p className="text-xl mb-4">
           Your score: {score} out of {questions.length}
@@ -87,12 +81,11 @@ const Practice = () => {
   }
 
   const currentQuestion = questions[currentQuestionIndex];
-  const isCorrect = selectedAnswer === currentQuestion.correct_answer;
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="p-4">
       <div className="relative bg-white p-6 shadow-lg rounded-lg">
-        {/* Render the Sparkle effect over the question card when a correct answer is given */}
+        {}
         {showSparkle && <Sparkle onComplete={() => setShowSparkle(false)} />}
         <div className="mb-4">
           <h2
@@ -108,7 +101,6 @@ const Practice = () => {
             let btnClass = "w-full text-left border border-gray-300 rounded px-4 py-2 transition-colors duration-300 ";
             if (selectedAnswer) {
               if (answer === selectedAnswer) {
-                // Set the button color: green if correct, red if wrong.
                 btnClass += answer === currentQuestion.correct_answer ? 'bg-green-200' : 'bg-red-200';
               } else {
                 btnClass += 'bg-white';
@@ -146,4 +138,4 @@ const Practice = () => {
   );
 };
 
-export default Practice;
+export default PracticeTab;

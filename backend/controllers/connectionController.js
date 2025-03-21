@@ -1,11 +1,9 @@
-// backend/controllers/connectionController.js
 const User = require('../models/User');
 
 exports.sendConnectionRequest = async (req, res) => {
   const { targetUserId } = req.body;
   try {
     const user = await User.findById(req.user.id);
-    // For simplicity, add connection directly (no approval)
     if (!user.connections.includes(targetUserId)) {
       user.connections.push(targetUserId);
       await user.save();

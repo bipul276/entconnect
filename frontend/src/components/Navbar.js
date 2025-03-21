@@ -1,64 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import AuthModal from './AuthModal';
 
 const Navbar = () => {
   const token = localStorage.getItem('token');
+  const userString = localStorage.getItem('user');
+  const user = userString ? JSON.parse(userString) : null;
   const history = useHistory();
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     history.push('/');
+    window.location.reload();
   };
 
   return (
-    <nav className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
-          Entrepreneur Platform
-        </Link>
-        <ul className="flex space-x-4">
-          {!token && (
-            <>
+    <>
+      <nav className="bg-gray-800 text-white">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <Link to="/" className="text-xl font-bold">
+            VentureBridge
+          </Link>
+          <ul className="flex space-x-4 items-center">
+            {!token ? (
               <li>
-                <Link to="/login" className="hover:underline">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/register" className="hover:underline">
-                  Register
-                </Link>
-              </li>
-            </>
-          )}
-          {token && (
-            <>
-              <li>
-                <Link to="/dashboard" className="hover:underline">
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link to="/profile" className="hover:underline">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link to="/chat" className="hover:underline">
-                  Chat
-                </Link>
-              </li>
-              <li>
-                <button onClick={handleLogout} className="hover:underline">
-                  Logout
+                <button onClick={() => setShowAuthModal(true)} className="hover:underline flex items-center focus:outline-none">
+                  <span className="mr-1">🔑</span> Login
                 </button>
               </li>
-            </>
-          )}
-        </ul>
-      </div>
-    </nav>
+            ) : (
+              <>
+                <li className="flex items-center">
+                  <span className="mr-1">👤</span> {user?.username}
+                </li>
+                <li>
+                  <button onClick={handleLogout} className="hover:underline focus:outline-none">
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+        </div>
+      </nav>
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
+    </>
   );
 };
 

@@ -1,4 +1,3 @@
-/* ===== Reset & Base ===== */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,6 @@
     background-color: #f4f4f4;
   }
 
-  /* ===== Navbar ===== */
   .navbar {
     background: rgba(0,0,0,0.8);
     position: fixed;
@@ -58,7 +56,6 @@
     color: #ff5e14;
   }
 
-  /* ===== Hero Section ===== */
   .hero {
     background: url('../images/hero-bg.jpg') center center/cover no-repeat;
     height: 100vh;
@@ -111,7 +108,6 @@
     background: #e04e0e;
   }
 
-  /* ===== Keyframe Animations ===== */
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-50px); }
     to { opacity: 1; transform: translateY(0); }
@@ -122,7 +118,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===== Sections ===== */
   .section {
     padding: 80px 0;
   }
@@ -143,7 +138,6 @@
     margin: 10px auto 0;
   }
 
-  /* ===== About Section ===== */
   .about {
     display: flex;
     flex-wrap: wrap;
@@ -166,7 +160,6 @@
     border-radius: 8px;
   }
 
-  /* ===== Services Section ===== */
   .services {
     display: flex;
     flex-wrap: wrap;
@@ -197,7 +190,6 @@
     line-height: 1.5;
   }
 
-  /* ===== Cards for Mentors, Networks, Knowledge ===== */
   .mentor-list, .network-list, .knowledge-list {
     display: flex;
     flex-wrap: wrap;
@@ -226,7 +218,6 @@
     margin-bottom: 15px;
   }
 
-  /* ===== Footer ===== */
   .footer {
     background: #000;
     color: #fff;
@@ -234,7 +225,6 @@
     padding: 30px 0;
   }
 
-  /* ===== Responsive Styles ===== */
   @media(max-width: 768px) {
     .service-card, .mentor-card, .network-card, .knowledge-card {
       width: calc(50% - 30px);

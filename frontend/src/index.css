@@ -3,3 +3,33 @@
 @tailwind utilities;
 
 /* You can add custom styles here if needed */
+.sparkle-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  @keyframes sparkle-realistic-animation {
+    0% {
+      transform: scale(0) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.5) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2) rotate(90deg);
+      opacity: 0;
+    }
+  }
+
+  .sparkle-realistic {
+    position: absolute;
+    background: radial-gradient(circle, #fff 0%, #fffb00 50%, transparent 70%);
+    border-radius: 50%;
+    animation: sparkle-realistic-animation 1s ease-out forwards;
+  }

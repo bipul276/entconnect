@@ -26,8 +26,6 @@ const ChatBox = ({ chat }) => {
   const [message, setMessage] = useState('');
 
   const sendMessage = async () => {
-    // For demonstration, we show an alert.
-    // In a real app, you'd POST to /api/chats/:id or use websockets
     alert('Message sending not implemented in this demo.');
   };
 

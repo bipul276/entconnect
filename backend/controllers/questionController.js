@@ -1,4 +1,3 @@
-// backend/controllers/questionController.js
 const Question = require('../models/Question');
 
 exports.getQuestions = async (req, res) => {
@@ -6,6 +5,6 @@ exports.getQuestions = async (req, res) => {
     const questions = await Question.find();
     res.json(questions);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error fetching questions' });
   }
 };
